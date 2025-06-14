@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+message="$(cat $1)"
+taskNumberPattern="^\[([A-Z]+-[0-9]+)\]"
+
+regularPattern="^${taskNumberPattern} (Feature|Bugfix)\. [A-Z][^\.]+\. [A-Z][^\.]+\.$"
+hotfixPattern="^(${taskNumberPattern} )?Hotfix\. [A-Z][^\.]+\. [A-Z][^\.]+\.$"
+
+if ! [[ $message =~ $regularPattern ]] && ! [[ $message =~ $hotfixPattern ]];
+then
+  echo "❌ Incorrect commit message format!"
+  echo "The message must match one of the following formats:"
+  echo ""
+  echo "[TASK-123] Feature. <The block where the innovations took place>. <Description of the innovation>."
+  echo "[TASK-123] Bugfix. <The block where the corrections took place>. <Description of the correction>."
+  echo "[TASK-123(optional)] Hotfix. <The block where the corrections took place>. <Description of the correction>."
+  echo ""
+  echo "📝 Examples:"
+  echo "[PRJ-100] Feature. Authorization. Add login form validation."
+  echo "[PRJ-101] Bugfix. Cart. Fix price calculation."
+  echo "[PRJ-102] Hotfix. API. Fix critical security vulnerability."
+  echo "Hotfix. API. Fix critical security vulnerability."
+  echo ""
+  echo "💬 Your message:"
+  echo $message
+  echo ""
+  exit 1
+fi
+
+echo '✅ Checking commit message format successfully completed'
