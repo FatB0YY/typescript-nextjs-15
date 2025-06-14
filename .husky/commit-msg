@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 message="$(cat $1)"
 taskNumberPattern="^\[([A-Z]+-[0-9]+)\]"
 

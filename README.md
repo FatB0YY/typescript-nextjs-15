@@ -156,4 +156,5 @@ Hotfix. API. Fix critical bug.
 ---
 
 > Готовый к продакшену стартовый шаблон для профессиональной разработки на Next.js 15 + FSD.
+
 # typescript-nextjs-15
