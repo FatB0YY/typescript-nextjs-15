@@ -152,8 +152,6 @@ Hotfix. API. Fix critical bug.
 
 ## Планы на будущее
 
-- ⏳ Подключение тестов (Vitest, RTL)
-- ⏳ Storybook
 - ⏳ Интеграция с Sentry
 - ⏳ GitHub Actions для CI
 
