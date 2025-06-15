@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import styles from './page.module.css';
 
@@ -20,6 +21,11 @@ export const Home = () => {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
+
+        <div>
+          <h1>Home</h1>
+          <Link href="/about">About</Link>
+        </div>
 
         <div className={styles.ctas}>
           <a

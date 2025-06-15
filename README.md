@@ -24,6 +24,7 @@ npm run dev
 - **ESLint FlatConfig** + **Prettier** + **Stylelint**
 - **JSDoc**
 - **Husky + lint-staged** (git-hooks)
+- **Storybook + Vitest**
 
 ---
 
@@ -67,6 +68,9 @@ npm run dev
 | `npm run format`          | Форматирование Prettier            |
 | `npm run type-check`      | Проверка типов TypeScript          |
 | `npm run prepare`         | Установка git-хуков (husky)        |
+| `npm run test`            | Запуск тестов Vitest               |
+| `npm run storybook`       | Запуск Storybook                   |
+| `npm run build-storybook` | Запуск продакшен-сборки Storybook  |
 
 ---
 
@@ -102,7 +106,7 @@ Hotfix. API. Fix critical bug.
 
 - Правила именования:
 
-  - `PascalCase` + `Type` для типов
+  - `T` префикс + `PascalCase` для типов
   - `I` префикс или `Props` постфикс для интерфейсов
   - `E` префикс для enum
 
@@ -156,5 +160,3 @@ Hotfix. API. Fix critical bug.
 ---
 
 > Готовый к продакшену стартовый шаблон для профессиональной разработки на Next.js 15 + FSD.
-
-# typescript-nextjs-15

@@ -1,12 +1,15 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import { FlatCompat } from '@eslint/eslintrc';
+import vitest from '@vitest/eslint-plugin';
 import prettier from 'eslint-config-prettier';
+import storybook from 'eslint-plugin-storybook';
 import { dirname } from 'path';
+import { parser } from 'typescript-eslint';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 // TODO: Sentry
-// TODO: Storybook
 // TODO: Коммит
 const compat = new FlatCompat({
   baseDirectory: __dirname,
@@ -38,7 +41,7 @@ const eslintConfig = [
     ignores: ['node_modules/**', 'build/**', '.next/**'],
     languageOptions: {
       ecmaVersion: 'latest',
-      parser: await import('@typescript-eslint/parser'),
+      parser: parser,
     },
     settings: {
       'import/resolver': {
@@ -139,12 +142,12 @@ const eslintConfig = [
       ],
       '@typescript-eslint/naming-convention': [
         'error',
-        // Types should always be named in PascalCase and have the "Type" postfix
+        // Types should always be named in PascalCase and have the "T" prefix
         {
           selector: 'typeAlias',
           format: ['PascalCase'],
           custom: {
-            regex: 'Type$',
+            regex: '^T[A-Z]',
             match: true,
           },
         },
@@ -230,16 +233,51 @@ const eslintConfig = [
     },
   },
   prettier,
+  ...storybook.configs['flat/recommended'],
+  {
+    files: ['**/*.test.{ts,tsx}', '__tests__/**/*.{ts,tsx}'],
+    plugins: {
+      vitest,
+    },
+    rules: {
+      ...vitest.configs.recommended.rules,
+    },
+    settings: {
+      vitest: {
+        typecheck: false, // https://vitest.dev/guide/testing-types - If you're using this feature,
+        // you should also enabled typecheck in the settings for this plugin
+      },
+    },
+    languageOptions: {
+      // If you're using typecheck=true
+      // parser: parser,
+      // parserOptions: {
+      //   project: './tsconfig.eslint.json',
+      //   tsconfigRootDir: __dirname,
+      // },
+      globals: {
+        ...vitest.environments.env.globals,
+      },
+    },
+  },
   {
     files: [
       'src/app/**/page.tsx',
       'src/app/**/layout.tsx',
       'eslint.config.mjs',
       'next.config.ts',
+      'vitest.config.mjs',
+      'vitest.workspace.js',
     ],
     rules: {
       'import/no-default-export': 'off',
       'react-refresh/only-export-components': 'off',
+    },
+  },
+  {
+    files: ['**/*.stories.@(ts|tsx)'],
+    rules: {
+      'import/no-default-export': 'off',
     },
   },
   {
