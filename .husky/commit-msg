@@ -1,11 +1,10 @@
-message="$(cat $1)"
-taskNumberPattern="^\[([A-Z]+-[0-9]+)\]"
+message="$(cat "$1")"
+taskNumberPattern="\\[([A-Z]+-[0-9]+)\\]"
 
-regularPattern="^${taskNumberPattern} (Feature|Bugfix)\. [A-Z][^\.]+\. [A-Z][^\.]+\.$"
-hotfixPattern="^(${taskNumberPattern} )?Hotfix\. [A-Z][^\.]+\. [A-Z][^\.]+\.$"
+regularPattern="^${taskNumberPattern} (Feature|Bugfix)\\. [A-Z][^\\.]+\\. [A-Z][^\\.]+\\.$"
+hotfixPattern="^(${taskNumberPattern} )?Hotfix\\. [A-Z][^\\.]+\\. [A-Z][^\\.]+\\.$"
 
-if ! [[ $message =~ $regularPattern ]] && ! [[ $message =~ $hotfixPattern ]];
-then
+if ! [[ "$message" =~ $regularPattern ]] && ! [[ "$message" =~ $hotfixPattern ]]; then
   echo "❌ Incorrect commit message format!"
   echo "The message must match one of the following formats:"
   echo ""
@@ -20,7 +19,7 @@ then
   echo "Hotfix. API. Fix critical security vulnerability."
   echo ""
   echo "💬 Your message:"
-  echo $message
+  echo "$message"
   echo ""
   exit 1
 fi
