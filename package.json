@@ -14,7 +14,7 @@
     "lint:styles:fix": "stylelint '**/*.{css,scss,sass}' --fix",
     "format": "prettier . --write",
     "type-check": "tsc --noEmit",
-    "prepare": "husky install",
+    "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -26,6 +26,7 @@
     "webpackbar": "^7.0.0"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^15.3.3",
     "@chromatic-com/storybook": "^4.0.0",
     "@eslint/eslintrc": "^3",
     "@feature-sliced/eslint-config": "^0.1.1",
@@ -39,7 +40,6 @@
     "@types/node": "^20",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "@types/webpack-bundle-analyzer": "^4.7.0",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
     "@vitejs/plugin-react": "^4.5.2",
@@ -76,7 +76,6 @@
     "typescript": "^5",
     "typescript-eslint": "^8.18.0",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.3",
-    "webpack-bundle-analyzer": "^4.10.2"
+    "vitest": "^3.2.3"
   }
 }
