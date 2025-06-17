@@ -1,8 +1,14 @@
-echo 'Running lint-staged...'
+echo 'Running typecheck...'
 
+npm run typecheck || {
+  echo '❌ Typecheck failed'
+  exit 1
+}
+
+echo 'Running lint-staged...'
 npx lint-staged || {
   echo '❌ lint-staged failed'
   exit 1
 }
 
-echo '✅ lint-staged completed successfully'
+echo '✅ Pre-commit checks passed!'
