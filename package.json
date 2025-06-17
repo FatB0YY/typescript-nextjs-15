@@ -13,7 +13,7 @@
     "lint:styles": "stylelint \"**/*.{css,scss,sass}\"",
     "lint:styles:fix": "stylelint \"**/*.{css,scss,sass}\" --fix",
     "format": "prettier . --write",
-    "type-check": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
